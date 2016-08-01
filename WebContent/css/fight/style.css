@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+
+.content-header{
+    margin-top: 5px;
+    padding: 20px;
+    border: 1px dotted black;
+}
+
+.content-left{
+    float:left;
+}
+
+.content-mid{
+    float: left;
+    margin-left: 111px;
+    margin-top: 8px;
+}
+
+.content-right{
+    float:right;
+}
+
+.clear{
+    clear: both;
+}
+
+.content-body{
+    height: 488px;
+    border: 1px dotted black;
+}
+
+.btnHome, .btnLogout{
+    width: 100px;
+}
+
+.btnActivities{
+    width: 100px;
+    margin-left: 21px;
+}
+
+.content-body-mid{
+    margin: 133px 0 0 50px;
+}
+
+.title{
+    margin: 40px 0 0 135px;
+}

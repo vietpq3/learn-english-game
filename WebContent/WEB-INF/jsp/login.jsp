@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<title>LOGIN</title>
+<link href="css/common.css?timestamp=current_time" rel="stylesheet" type="text/css" />
+<link href="css/login/style.css?timestamp=current_time" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="wrapper">
@@ -15,10 +18,10 @@
             <form:form action="login" modelAttribute="form">
                 <ul>
                     <li>
-                        <form:input path="username" class="inputClass" placeholder="username" />
+                        <form:input path="username" class="inputClass" placeholder="Username" value="${form.username}"/>
                     </li>
                     <li>
-                        <form:password path="password" class="inputClass" placeholder="password"/>
+                        <form:password path="password" class="inputClass" placeholder="Password" value="${form.password}"/>
                     </li>
                     <li>
                         <input type="submit" value="Login" class="inputClass btnSubmit" />
@@ -27,6 +30,7 @@
                         <p>Not registered? <a onclick="" href="#">Create an account</a></p>
                     </li>
                 </ul>
+                <form:errors path="*" cssClass="errors" element="div"></form:errors>
             </form:form>
         </div>
     </div>

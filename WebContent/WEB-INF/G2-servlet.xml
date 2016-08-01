@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-    <context:component-scan base-package="controller" />
+    <context:component-scan base-package="/" />
 
     <bean id="viewResolver"
         class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -20,8 +20,11 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    
+    <import resource="classes/database/sqlserver.xml" />
 
     <mvc:resources mapping="/css/**" location="/css/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:annotation-driven />
 
 </beans>

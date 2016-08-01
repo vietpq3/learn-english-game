@@ -1,34 +1,37 @@
 package daoImpl;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dao.LoginDao;
+import param.LoginParam;
+import dao.AbstractDao;
+import dao.ILoginDao;
 import entity.UserInfo;
 
 @Component
-public class LoginDaoImpl implements LoginDao {
+public class LoginDaoImpl extends AbstractDao implements ILoginDao {
     
-    private DataSource datasource;
-    
-    public void setDataSource(DataSource datasource) {
-        this.datasource = datasource;
+    @Autowired
+    public LoginDaoImpl(DataSource dataSource) {
+        this.setDataSource(dataSource);
     }
     
-    public List<UserInfo> checkLogin(String username) throws SQLException {
-        Connection con = datasource.getConnection();
-        Statement stm = con.createStatement();
-        String sql = "select * from loginInf where username = " + username;
-        ResultSet rs = stm.executeQuery(sql);
+    @Override
+    public List<UserInfo> checkLogin(LoginParam param) throws SQLException {
+        String sql = "select * from loginInf where username = ? and passwords = ?";
         List<UserInfo> userInfoList = new ArrayList<UserInfo>();
+        createArgs();
+        setArgs(param.getUsername());
+        setArgs(param.getPassword());
+        ResultSet rs = excuteQuery(sql);
+        
         UserInfo userInfo = null;
         while (rs.next()) {
             userInfo = new UserInfo();
@@ -36,7 +39,7 @@ public class LoginDaoImpl implements LoginDao {
             userInfo.setPassword(rs.getString("passwords"));
             userInfoList.add(userInfo);
         }
+        
         return userInfoList;
     }
-    
 }
