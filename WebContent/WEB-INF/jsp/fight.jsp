@@ -40,6 +40,7 @@
                     <button id="btnOther" class="btnSubmit btnActivities">Other</button>
                     <form:hidden id="gameMode" path="gameMode"/>
                 </form:form>
+                <img alt="" src="/picture/pic001.jpg">
             </div>
         </div>
     </div>

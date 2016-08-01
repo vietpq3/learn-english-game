@@ -23,7 +23,7 @@ public class FightController {
         return "fight";
     }
     
-    @RequestMapping("fight")
+    @RequestMapping("fighting")
     public String fight(@ModelAttribute FightForm form) {
         String gameMode = form.getGameMode();
         List<PictureInfo> picInfoList = null;
@@ -34,11 +34,12 @@ public class FightController {
     }
     
     private List<PictureInfo> getListPictureMode() {
-        List<PictureInfo> picInfoList = fightDao.getPicInfoList();
+        // List<PictureInfo> picInfoList = fightDao.getPicInfoList();
+        return null;
     }
     
-    private List<int> getTheme(){
-        
+    private List<Integer> getTheme() {
+        return null;
     }
     
     @ModelAttribute("form")
