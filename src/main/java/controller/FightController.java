@@ -1,14 +1,18 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import param.FightParam;
 import dao.IFightDao;
 import entity.PictureInfo;
+import entity.Theme;
 import form.FightForm;
 
 @Controller
@@ -23,7 +27,7 @@ public class FightController {
         return "fight";
     }
     
-    @RequestMapping("fighting")
+    @RequestMapping("fight")
     public String fight(@ModelAttribute FightForm form) {
         String gameMode = form.getGameMode();
         List<PictureInfo> picInfoList = null;
@@ -34,11 +38,25 @@ public class FightController {
     }
     
     private List<PictureInfo> getListPictureMode() {
-        // List<PictureInfo> picInfoList = fightDao.getPicInfoList();
+        FightParam param = new FightParam();
+        param.setThemeId(getTheme().getThemeId());
+        try {
+            List<PictureInfo> picInfoList = fightDao.getPicInfoList(param);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
     
-    private List<Integer> getTheme() {
+    private Theme getTheme() {
+        List<Theme> themeList;
+        try {
+            themeList = fightDao.getAllTheme();
+            Random rd = new Random();
+            return themeList.get(rd.nextInt(themeList.size()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
     
