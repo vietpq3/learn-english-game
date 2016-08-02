@@ -48,7 +48,7 @@ create table pictureInfo(
 	url varchar(300)
 )
 insert into pictureInfo(pictureId, pictureName, themeId, url) values
-(1, )
+(1,'aaa', 1, 'sdfdf' )
 END
 go
 ----------------------------------------------------------------------------------------
