@@ -58,6 +58,30 @@ insert into pictureInfo(pictureId, pictureName, themeId, url) values
 (2,'blackberry', 1, '../picture/pic002.jpeg' )
 insert into pictureInfo(pictureId, pictureName, themeId, url) values
 (3,'blueberry', 1, '../picture/pic003.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(4,'cherry', 1, '../picture/pic004.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(5,'coconut', 1, '../picture/pic005.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(6,'cranberry', 1, '../picture/pic006.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(7,'gooseberry', 1, '../picture/pic007.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(8,'mango', 1, '../picture/pic008.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(9,'papaya', 1, '../picture/pic009.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(10,'pear', 1, '../picture/pic010.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(11,'pineapple', 1, '../picture/pic011.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(12,'dried grapes', 1, '../picture/pic012.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(13,'raspberry', 1, '../picture/pic013.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(14,'walnut', 1, '../picture/pic014.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(15,'peanuts', 1, '../picture/pic015.jpeg' )
 END
 go
 ----------------------------------------------------------------------------------------

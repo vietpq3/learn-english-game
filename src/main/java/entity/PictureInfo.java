@@ -4,7 +4,16 @@ public class PictureInfo {
     private int pictureId;
     private String url;
     private String pictureName;
+    private String encryptPictureName;
     private int themeId;
+    
+    public String getEncryptPictureName() {
+        return encryptPictureName;
+    }
+    
+    public void setEncryptPictureName(String encryptPictureName) {
+        this.encryptPictureName = encryptPictureName;
+    }
     
     public int getPictureId() {
         return pictureId;

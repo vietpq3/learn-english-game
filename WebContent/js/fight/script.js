@@ -13,8 +13,10 @@ function init() {
         $('#gameMode').attr("value", "Picture");
         $('#formActivities').submit();
     });
-}
-
-function checkAnswer(){
-	alert("aaaaaaaaaa");
+    
+    $('.picture').click(function(){
+        $('#answer').attr("value", $(this).attr("answer"));
+        $('#formActivities').attr("action", "fighting");
+        $('#formActivities').submit();
+    });
 }

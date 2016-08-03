@@ -51,9 +51,13 @@
                     </div>
                     <div class="content-body-images">
                         <c:forEach items="${picInfoList}" var="picInfo" >
-                            <img alt="Image" src="${picInfo.url}" onclick="checkAnswer();" class="picture" />
+                            <img alt="Image" src="${picInfo.url}" answer="${picInfo.encryptPictureName}" class="picture" />
                         </c:forEach>
                     </div>
+                    <form:hidden path="gameMode"/>
+                    <form:hidden path="question" value="${question}"/>
+                    <form:hidden path="answer" id="answer" />
+                    <form:hidden id="alreadyUseQuestionList" path="alreadyUseQuestionList" value="${alreadyUseQuestionList}" />
                 </form:form>
             </c:if>
         </div>
