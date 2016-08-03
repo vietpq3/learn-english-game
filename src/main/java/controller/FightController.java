@@ -11,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import param.FightParam;
 import dao.IFightDao;
 import entity.PictureInfo;
 import entity.Theme;
+import exception.SystemException;
 import form.FightForm;
 
 @Controller
@@ -30,14 +32,16 @@ public class FightController {
         return "fight";
     }
     
-    @ExceptionHandler(Exception.class)
-    public String ExceptionHandle(Exception ex, Model model){
-    	model.addAttribute("message", ex.getMessage());
-    	return "error";
+    @ExceptionHandler(SystemException.class)
+    public ModelAndView SystemExceptionHandle(SystemException ex) {
+        ModelAndView mav = new ModelAndView("error");
+        mav.addObject("message", ex.getMessage());
+        return mav;
     }
     
     @RequestMapping("fight")
-    public String fight(@ModelAttribute FightForm form, Model model) throws Exception {
+    public String fight(@ModelAttribute FightForm form, Model model)
+            throws Exception {
         String gameMode = form.getGameMode();
         List<PictureInfo> picInfoList = null;
         if ("Picture".equals(gameMode)) {
@@ -50,21 +54,21 @@ public class FightController {
     
     private List<PictureInfo> getListPictureForPictureMode() throws Exception {
         FightParam param = new FightParam();
-        //param.setThemeId(getTheme().getThemeId());
+        // param.setThemeId(getTheme().getThemeId());
         param.setThemeId(1);
         List<PictureInfo> picInfoList = null;
         try {
-        	picInfoList = fightDao.getPicInfoList(param);
+            picInfoList = fightDao.getPicInfoList(param);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(picInfoList != null){
-        	Collections.shuffle(picInfoList);
-        	while(picInfoList.size() > 9){
-        		picInfoList.remove(0);
-        	}
-        }else{
-        	throw new Exception("List null");
+        if (picInfoList != null && picInfoList.size() > 0) {
+            Collections.shuffle(picInfoList);
+            while (picInfoList.size() > 9) {
+                picInfoList.remove(0);
+            }
+        } else {
+            throw new SystemException("List empty");
         }
         return picInfoList;
     }
@@ -76,8 +80,8 @@ public class FightController {
             Random rd = new Random();
             return themeList.get(rd.nextInt(themeList.size()));
         } catch (SQLException e) {
-        	e.printStackTrace();
-        	throw new Exception("SQL Exception");
+            e.printStackTrace();
+            throw new SystemException("SQL Exception");
         }
     }
     

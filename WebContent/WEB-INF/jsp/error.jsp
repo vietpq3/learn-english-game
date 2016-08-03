@@ -7,6 +7,7 @@
 <title>ERROR</title>
 </head>
 <body>
-	<h3>${model.message }</h3>
+    <h3>Error: ${message}</h3>
+    <p>Click <a href="../fight/index">here</a> to go back</p>
 </body>
 </html>
