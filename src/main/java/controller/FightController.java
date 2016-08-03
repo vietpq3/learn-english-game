@@ -1,11 +1,14 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,37 +30,55 @@ public class FightController {
         return "fight";
     }
     
+    @ExceptionHandler(Exception.class)
+    public String ExceptionHandle(Exception ex, Model model){
+    	model.addAttribute("message", ex.getMessage());
+    	return "error";
+    }
+    
     @RequestMapping("fight")
-    public String fight(@ModelAttribute FightForm form) {
+    public String fight(@ModelAttribute FightForm form, Model model) throws Exception {
         String gameMode = form.getGameMode();
         List<PictureInfo> picInfoList = null;
         if ("Picture".equals(gameMode)) {
-            picInfoList = getListPictureMode();
+            picInfoList = getListPictureForPictureMode();
         }
+        model.addAttribute("picInfoList", picInfoList);
+        model.addAttribute("question", "AAAAAAA");
         return "fight";
     }
     
-    private List<PictureInfo> getListPictureMode() {
+    private List<PictureInfo> getListPictureForPictureMode() throws Exception {
         FightParam param = new FightParam();
-        param.setThemeId(getTheme().getThemeId());
+        //param.setThemeId(getTheme().getThemeId());
+        param.setThemeId(1);
+        List<PictureInfo> picInfoList = null;
         try {
-            List<PictureInfo> picInfoList = fightDao.getPicInfoList(param);
+        	picInfoList = fightDao.getPicInfoList(param);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        if(picInfoList != null){
+        	Collections.shuffle(picInfoList);
+        	while(picInfoList.size() > 9){
+        		picInfoList.remove(0);
+        	}
+        }else{
+        	throw new Exception("List null");
+        }
+        return picInfoList;
     }
     
-    private Theme getTheme() {
+    private Theme getTheme() throws Exception {
         List<Theme> themeList;
         try {
             themeList = fightDao.getAllTheme();
             Random rd = new Random();
             return themeList.get(rd.nextInt(themeList.size()));
         } catch (SQLException e) {
-            e.printStackTrace();
+        	e.printStackTrace();
+        	throw new Exception("SQL Exception");
         }
-        return null;
     }
     
     @ModelAttribute("form")

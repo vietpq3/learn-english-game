@@ -45,3 +45,27 @@
 .title{
     margin: 40px 0 0 135px;
 }
+
+.question{
+	padding: 15px 0 5px 0;
+	text-align: center;
+}
+
+.question span{
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.content-body-images{
+	margin-left: 45px;
+}
+
+img{
+	height: 111px;
+	margin: 10px;
+	border: 1px solid #99B4D1;
+}
+
+img:HOVER{
+	border: 1px solid red;
+}

@@ -1,3 +1,8 @@
+--use master
+--go
+--drop database G2
+--go
+----------------------------------------------------------------------------------------
 if not exists(select name from master.sys.databases where name = 'G2')
 create database G2
 go
@@ -48,9 +53,14 @@ create table pictureInfo(
 	url varchar(300)
 )
 insert into pictureInfo(pictureId, pictureName, themeId, url) values
-(1,'aaa', 1, 'sdfdf' )
+(1,'avocado', 1, '../picture/pic001.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(2,'blackberry', 1, '../picture/pic002.jpeg' )
+insert into pictureInfo(pictureId, pictureName, themeId, url) values
+(3,'blueberry', 1, '../picture/pic003.jpeg' )
 END
 go
 ----------------------------------------------------------------------------------------
 --select * from loginInf
 --select @@SERVERNAME as svname
+--select * from pictureInfo where themeId = 1

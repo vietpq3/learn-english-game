@@ -27,6 +27,7 @@ public class FightDaoImpl extends AbstractDao implements IFightDao {
     @Override
     public List<Theme> getAllTheme() throws SQLException {
         String sql = "select * from themes";
+        createArgs();
         ResultSet rs = excuteQuery(sql);
         List<Theme> themeList = new ArrayList<Theme>();
         Theme element = null;

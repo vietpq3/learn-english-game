@@ -9,8 +9,12 @@ function init() {
     });
 
     $('#btnPicture').click(function() {
-        $('#formRedirect').attr("action", "fight");
+        $('#formActivities').attr("action", "fight");
         $('#gameMode').attr("value", "Picture");
-        $('#formRedirect').submit();
+        $('#formActivities').submit();
     });
+}
+
+function checkAnswer(){
+	alert("aaaaaaaaaa");
 }
