@@ -33,7 +33,7 @@
         <div class="clear"></div>
         
         <div class="content-body">
-            <c:if test="${empty picInfoList}">
+            <c:if test="${empty form.picInfoList}">
                 <h2 class="title">CHOOSE ACTIVITY</h2>
                 <div class="content-body-mid">
                     <form:form id="formActivities" method="POST" modelAttribute="form">
@@ -44,20 +44,19 @@
                     </form:form>
                 </div>
             </c:if>
-            <c:if test="${not empty picInfoList}">
+            <c:if test="${not empty form.picInfoList}">
                 <form:form id="formActivities" method="POST" modelAttribute="form">
                     <div class="question">
-                        <span>${question}</span>
+                        <span>${form.question}</span>
                     </div>
                     <div class="content-body-images">
-                        <c:forEach items="${picInfoList}" var="picInfo" >
+                        <c:forEach items="${form.picInfoList}" var="picInfo" >
                             <img alt="Image" src="${picInfo.url}" answer="${picInfo.encryptPictureName}" class="picture" />
                         </c:forEach>
                     </div>
                     <form:hidden path="gameMode"/>
-                    <form:hidden path="question" value="${question}"/>
+                    <form:hidden path="question" value="${form.question}"/>
                     <form:hidden path="answer" id="answer" />
-                    <form:hidden id="alreadyUseQuestionList" path="alreadyUseQuestionList" value="${alreadyUseQuestionList}" />
                 </form:form>
             </c:if>
         </div>

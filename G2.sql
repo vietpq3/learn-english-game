@@ -38,8 +38,8 @@ create table themes(
 	themeId int primary key,
 	themeName varchar(20)
 )
-insert into themes(themeId, themeName) values(1, 'vegetables')
-insert into themes(themeId, themeName) values(2, 'fruits')
+insert into themes(themeId, themeName) values(1, 'fruits')
+insert into themes(themeId, themeName) values(2, 'vegetables')
 insert into themes(themeId, themeName) values(3, 'animals')
 END
 go

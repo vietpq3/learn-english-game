@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import param.FightParam;
 
 import common.CryptUtil;
+import common.SessionAccessor;
 
 import dao.IFightDao;
 import entity.PictureInfo;
@@ -30,57 +31,75 @@ import form.FightForm;
 @Controller
 @RequestMapping("fight")
 public class FightController {
-    
+
     @Autowired
     private IFightDao fightDao;
-    
+
     @ExceptionHandler(SystemException.class)
     public ModelAndView SystemExceptionHandle(SystemException ex) {
         ModelAndView mav = new ModelAndView("error");
         mav.addObject("message", ex.getMessage());
         return mav;
     }
-    
+
     @RequestMapping("index")
     public String index() {
         return "fight";
     }
-    
+
     @RequestMapping("fight")
-    public String fight(@ModelAttribute FightForm form, Model model,
-            HttpServletRequest request) throws Exception {
-        String gameMode = form.getGameMode();
+    public String fight(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request)
+            throws SystemException {
+
+        SessionAccessor session = new SessionAccessor(request);
+
+        String gameMode = form.getGameMode() == null ? session.getFightForm().getGameMode() : form.getGameMode();
         List<PictureInfo> picInfoList = null;
         List<String> alreadyUseQuestionList = new ArrayList<String>();
+
         if ("Picture".equals(gameMode)) {
             picInfoList = getListPictureForPictureMode();
         }
+
         if (picInfoList == null || picInfoList.isEmpty()) {
             throw new SystemException("Can not get List picture");
         }
-        encryptPictureName(picInfoList, request.getSession().getId());
+
+        try {
+            encryptPictureName(picInfoList, session.getId());
+        } catch (UnsupportedEncodingException e) {
+            throw new SystemException("Encrypt fail");
+        }
         String question = getQuestion(picInfoList, alreadyUseQuestionList);
         alreadyUseQuestionList.add(question);
-        
+
+        form.setGameMode(gameMode);
         form.setPicInfoList(picInfoList);
-        model.addAttribute("picInfoList", picInfoList);
-        model.addAttribute("alreadyUseQuestionList", alreadyUseQuestionList);
-        model.addAttribute("question", question);
+        form.setAlreadyUseQuestionList(alreadyUseQuestionList);
+        form.setQuestion(question);
+
+        session.setFightForm(form);
+        model.addAttribute("form", form);
+
         return "fight";
     }
-    
+
     @RequestMapping("fighting")
-    public String fighting(@ModelAttribute FightForm form, Model model,
-            HttpServletRequest request) throws SystemException {
+    public String fighting(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request)
+            throws SystemException {
+
+        SessionAccessor session = new SessionAccessor(request);
+
         String answer = form.getAnswer();
         String question = form.getQuestion();
-        List<PictureInfo> picInfoList = form.getPicInfoList();
-        List<String> alreadyUseQuestionList = form.getAlreadyUseQuestionList();
+
+        List<PictureInfo> picInfoList = session.getFightForm().getPicInfoList();
+        List<String> alreadyUseQuestionList = session.getFightForm().getAlreadyUseQuestionList();
+
         try {
-            if (question.equals(CryptUtil.decrypt(answer, request.getSession()
-                    .getId()))) {
+            if (question.equals(CryptUtil.decrypt(answer, session.getId()))) {
                 if (picInfoList.size() == alreadyUseQuestionList.size()) {
-                    return "redirect:fight/fight";
+                    return "redirect:../fight/fight";
                 }
                 question = getQuestion(picInfoList, alreadyUseQuestionList);
                 alreadyUseQuestionList.add(question);
@@ -88,44 +107,44 @@ public class FightController {
         } catch (UnsupportedEncodingException e) {
             throw new SystemException("Encrypt/Decrypt fail");
         }
+
         form.setPicInfoList(picInfoList);
-        // model.addAttribute("picInfoList", picInfoList);
-        model.addAttribute("alreadyUseQuestionList", alreadyUseQuestionList);
-        model.addAttribute("question", question);
+        form.setAlreadyUseQuestionList(alreadyUseQuestionList);
+        form.setQuestion(question);
+
+        session.setFightForm(form);
+        model.addAttribute("form", form);
         return "fight";
     }
-    
-    private List<PictureInfo> encryptPictureName(List<PictureInfo> picInfoList,
-            String sessionId) throws UnsupportedEncodingException {
+
+    private List<PictureInfo> encryptPictureName(List<PictureInfo> picInfoList, String sessionId)
+            throws UnsupportedEncodingException {
         for (PictureInfo picInfo : picInfoList) {
-            picInfo.setEncryptPictureName(CryptUtil.encrypt(
-                    picInfo.getPictureName(), sessionId));
+            picInfo.setEncryptPictureName(CryptUtil.encrypt(picInfo.getPictureName(), sessionId));
         }
         return picInfoList;
     }
-    
-    private String getQuestion(List<PictureInfo> picInfoList,
-            List<String> alreadyUseQuestionList) {
+
+    private String getQuestion(List<PictureInfo> picInfoList, List<String> alreadyUseQuestionList) {
         Random rd = new Random();
         Collections.shuffle(picInfoList);
         String question = picInfoList.get(0).getPictureName();
         do {
-            question = picInfoList.get(rd.nextInt(picInfoList.size() - 1))
-                    .getPictureName();
+            question = picInfoList.get(rd.nextInt(picInfoList.size() - 1)).getPictureName();
         } while (alreadyUseQuestionList.contains(question));
-        
+
         return question;
     }
-    
-    private List<PictureInfo> getListPictureForPictureMode() throws Exception {
+
+    private List<PictureInfo> getListPictureForPictureMode() throws SystemException {
         FightParam param = new FightParam();
-        // param.setThemeId(getTheme().getThemeId());
-        param.setThemeId(1);
+        Theme theme = getTheme();
+        param.setThemeId(theme.getThemeId());
         List<PictureInfo> picInfoList = null;
         try {
             picInfoList = fightDao.getPicInfoList(param);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SystemException("SQL Exception");
         }
         if (picInfoList != null && picInfoList.size() > 0) {
             Collections.shuffle(picInfoList);
@@ -133,26 +152,25 @@ public class FightController {
                 picInfoList.remove(0);
             }
         } else {
-            throw new SystemException("List empty");
+            throw new SystemException("Theme " + theme.getThemeName() + " is empty (in DB)");
         }
         return picInfoList;
     }
-    
-    private Theme getTheme() throws Exception {
+
+    private Theme getTheme() throws SystemException {
         List<Theme> themeList;
         try {
             themeList = fightDao.getAllTheme();
             Random rd = new Random();
             return themeList.get(rd.nextInt(themeList.size()));
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SystemException("SQL Exception");
         }
     }
-    
+
     @ModelAttribute("form")
     public FightForm getForm() {
         return new FightForm();
     }
-    
+
 }

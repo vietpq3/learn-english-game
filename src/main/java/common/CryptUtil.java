@@ -15,10 +15,14 @@ public class CryptUtil {
         StringBuffer output = new StringBuffer("");
 
         for (char c : input.toCharArray()) {
-            if (c <= 'Z') {
+            if ('A' <= c && c <= 'Z') {
                 output.append((char) (c + key - ((c + key) > 90 ? 26 : 0)));
-            } else {
+            } else if ('a' <= c && c <= 'z') {
                 output.append((char) (c + key - ((c + key) > 122 ? 26 : 0)));
+            } else if (' ' == c || 33 <= c && c <= 126) {
+                output.append(c);
+            } else {
+                throw new UnsupportedEncodingException();
             }
         }
         return output.toString();
@@ -37,6 +41,8 @@ public class CryptUtil {
                 output.append((char) (c - key + ((c - key) < 65 ? 26 : 0)));
             } else if ('a' <= c && c <= 'z') {
                 output.append((char) (c - key + ((c - key) < 97 ? 26 : 0)));
+            } else if (' ' == c || 33 <= c && c <= 126) {
+                output.append(c);
             } else {
                 throw new UnsupportedEncodingException();
             }
