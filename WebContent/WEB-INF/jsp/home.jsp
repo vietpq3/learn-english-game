@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>HOME</title>
 <link href="../css/common.css?timestamp=current_time" rel="stylesheet" type="text/css" />
-<link href="../css/home/style.css?timestamp=current_time" rel="stylesheet" type="text/css" />
+<link href="../css/home/style.css?timestamps=current_time" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="../js/home/script.js" type="text/javascript"></script>
 </head>
@@ -19,10 +19,10 @@
         <form:form id="form" action="" method="POST" modelAttribute="form">
             <div class="content-header">
                 <div class="content-left">
-                    Welcome
+                    Welcome: ${loginUser}
                 </div>
                 <div class="content-mid">
-                    BestScore
+                    BestScore: ${highScore}
                 </div>
                 <div class="content-right">
                     <input type="button" id="btnLogout" value="Logout" class="btnSubmit btnLogout" />

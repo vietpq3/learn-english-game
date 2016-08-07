@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FIGHT</title>
-<link href="../css/common.css?timestampss=${timestamp}" rel="stylesheet" type="text/css" />
-<link href="../css/fight/style.css?timestampss=${timestamp}" rel="stylesheet" type="text/css" />
+<link href="../css/common.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
+<link href="../css/fight/style.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-2.2.4.min.js?timestamp=${timestamp}" type="text/javascript"></script>
 <script src="../js/fight/script.js?timestamp=${timestamp}" type="text/javascript"></script>
 </head>

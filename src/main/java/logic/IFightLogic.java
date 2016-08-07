@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import param.FightParam;
+import param.LoginParam;
 import entity.PictureInfo;
 import entity.Theme;
 import exception.SystemException;
@@ -21,5 +22,7 @@ public interface IFightLogic {
             throws UnsupportedEncodingException;
     
     String getQuestion(List<PictureInfo> picInfoList, List<String> alreadyUseQuestionList);
+    
+    int updateHighScore(LoginParam param);
     
 }

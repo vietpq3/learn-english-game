@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import param.LoginParam;
+
 import common.CryptUtil;
 import common.SessionAccessor;
 
@@ -108,6 +110,16 @@ public class FightController {
             } else {
                 form.setLife(formInSession.getLife() - 1);
                 if (form.getLife() < 1) {
+                    if (formInSession.getScore() > session.getLoginUser().getHighScore()) {
+                        
+                        LoginParam param = new LoginParam();
+                        param.setUsername(session.getLoginUser().getUsername());
+                        param.setHighScore(formInSession.getScore());
+                        fightLogic.updateHighScore(param);
+                        
+                        form.setNewHighScore(true);
+                        session.getLoginUser().setHighScore(formInSession.getScore());
+                    }
                     form.setLoseFlag(true);
                 }
             }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import param.FightParam;
+import param.LoginParam;
 import dao.AbstractDao;
 import dao.IFightDao;
 import entity.PictureInfo;
@@ -41,8 +42,7 @@ public class FightDaoImpl extends AbstractDao implements IFightDao {
     }
     
     @Override
-    public List<PictureInfo> getPicInfoList(FightParam param)
-            throws SQLException {
+    public List<PictureInfo> getPicInfoList(FightParam param) throws SQLException {
         String sql = "select * from pictureInfo where themeId = ?";
         createArgs();
         setArgs(param.getThemeId());
@@ -58,6 +58,19 @@ public class FightDaoImpl extends AbstractDao implements IFightDao {
             picInfoList.add(picInfo);
         }
         return picInfoList;
+    }
+    
+    @Override
+    public int updateHighScore(LoginParam param) {
+        String sql = "update userInf set highScore = ? where username = ?";
+        
+        createArgs();
+        setArgs(param.getHighScore());
+        setArgs(param.getUsername());
+        
+        int count = excuteUpdate(sql);
+        
+        return count;
     }
     
 }

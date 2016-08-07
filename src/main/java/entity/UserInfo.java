@@ -3,6 +3,15 @@ package entity;
 public class UserInfo {
     private String username;
     private String password;
+    private int highScore;
+    
+    public int getHighScore() {
+        return highScore;
+    }
+    
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
     
     public String getPassword() {
         return password;

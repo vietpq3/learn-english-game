@@ -3,6 +3,7 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import common.SessionAccessor;
@@ -15,9 +16,14 @@ public class HomeController {
     private static final String HOME_JSP = "home";
     
     @RequestMapping(INDEX)
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request, Model model) {
         SessionAccessor session = new SessionAccessor(request);
+        
+        model.addAttribute("loginUser", session.getLoginUser().getUsername());
+        model.addAttribute("highScore", session.getLoginUser().getHighScore());
+        
         session.setFightForm(null);
+        
         return HOME_JSP;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import param.FightParam;
+import param.LoginParam;
 
 import common.CryptUtil;
 
@@ -48,8 +49,8 @@ public class FightLogicImpl implements IFightLogic {
             throw new SystemException("SQL Exception");
         }
         if (picInfoList != null && picInfoList.size() > 0) {
-            Collections.shuffle(picInfoList);
             while (picInfoList.size() > 9) {
+                Collections.shuffle(picInfoList);
                 picInfoList.remove(0);
             }
         } else {
@@ -77,6 +78,11 @@ public class FightLogicImpl implements IFightLogic {
         } while (alreadyUseQuestionList.contains(question));
         
         return question;
+    }
+    
+    @Override
+    public int updateHighScore(LoginParam param) {
+        return fightDao.updateHighScore(param);
     }
     
     private Theme getTheme() throws SystemException {

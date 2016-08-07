@@ -37,6 +37,7 @@ public class LoginDaoImpl extends AbstractDao implements ILoginDao {
             userInfo = new UserInfo();
             userInfo.setUsername(rs.getString("username"));
             userInfo.setPassword(rs.getString("passwords"));
+            userInfo.setHighScore(rs.getInt("highScore"));
             userInfoList.add(userInfo);
         }
         

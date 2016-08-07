@@ -13,6 +13,15 @@ public class FightForm {
     private Integer life;
     private int score;
     private boolean loseFlag = false;
+    private boolean isNewHighScore = false;
+    
+    public boolean isNewHighScore() {
+        return isNewHighScore;
+    }
+    
+    public void setNewHighScore(boolean isNewHighScore) {
+        this.isNewHighScore = isNewHighScore;
+    }
     
     public boolean isLoseFlag() {
         return loseFlag;

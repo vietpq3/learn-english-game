@@ -112,7 +112,7 @@ insert into pictureInfo(pictureName, themeId, url) values
 insert into pictureInfo(pictureName, themeId, url) values
 ('potato', 2, '../picture/vegetables/pic013.jpeg' )
 insert into pictureInfo(pictureName, themeId, url) values
-('spinash', 2, '../picture/vegetables/pic014.jpeg' )
+('spinach', 2, '../picture/vegetables/pic014.jpeg' )
 insert into pictureInfo(pictureName, themeId, url) values
 ('tomato', 2, '../picture/vegetables/pic015.jpeg' )
 ---------------------------------------------------------
