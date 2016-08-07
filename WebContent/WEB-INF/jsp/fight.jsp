@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FIGHT</title>
-<link href="../css/common.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
-<link href="../css/fight/style.css?timestamps=${timestamp}" rel="stylesheet" type="text/css" />
+<link href="../css/common.css?timestampss=${timestamp}" rel="stylesheet" type="text/css" />
+<link href="../css/fight/style.css?timestampss=${timestamp}" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-2.2.4.min.js?timestamp=${timestamp}" type="text/javascript"></script>
 <script src="../js/fight/script.js?timestamp=${timestamp}" type="text/javascript"></script>
 </head>
@@ -46,17 +46,27 @@
             </c:if>
             <c:if test="${not empty form.picInfoList}">
                 <form:form id="formActivities" method="POST" modelAttribute="form">
-                    <div class="question">
-                        <span>${form.question}</span>
+                    <div class="info">
+                        <div class="life">
+                            <span>Life: </span>${form.life}
+                        </div>
+                        <div class="question">
+                            <span>${form.question}</span>
+                        </div>
+                        <div class="score">
+                            <span>Score: </span>${form.score}
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="content-body-images">
-                        <c:forEach items="${form.picInfoList}" var="picInfo" >
-                            <img alt="Image" src="${picInfo.url}" answer="${picInfo.encryptPictureName}" class="picture" />
-                        </c:forEach>
-                    </div>
+                        <div class="content-body-images">
+                            <c:forEach items="${form.picInfoList}" var="picInfo" >
+                                <img alt="Image" src="${picInfo.url}" answer="${picInfo.encryptPictureName}" class="picture" />
+                            </c:forEach>
+                        </div>
                     <form:hidden path="gameMode"/>
                     <form:hidden path="question" value="${form.question}"/>
                     <form:hidden path="answer" id="answer" />
+                    <form:hidden path="loseFlag" id="loseFlag"/>
                 </form:form>
             </c:if>
         </div>

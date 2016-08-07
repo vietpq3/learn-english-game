@@ -1,3 +1,7 @@
+window.onload = function(){
+    checkLoseFlag();
+};
+
 $(document).ready(function() {
     init();
 });
@@ -19,4 +23,11 @@ function init() {
         $('#formActivities').attr("action", "fighting");
         $('#formActivities').submit();
     });
+}
+
+function checkLoseFlag(){
+    if($('#loseFlag').val() == "true"){
+        alert("You losed");
+        window.location = "../home/index";
+    }
 }

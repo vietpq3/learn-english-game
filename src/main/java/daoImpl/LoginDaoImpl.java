@@ -25,7 +25,7 @@ public class LoginDaoImpl extends AbstractDao implements ILoginDao {
     
     @Override
     public List<UserInfo> checkLogin(LoginParam param) throws SQLException {
-        String sql = "select * from loginInf where username = ? and passwords = ?";
+        String sql = "select * from userInf where username = ? and passwords = ?";
         List<UserInfo> userInfoList = new ArrayList<UserInfo>();
         createArgs();
         setArgs(param.getUsername());

@@ -10,6 +10,33 @@ public class FightForm {
     private String question;
     private List<PictureInfo> picInfoList;
     private List<String> alreadyUseQuestionList;
+    private Integer life;
+    private int score;
+    private boolean loseFlag = false;
+    
+    public boolean isLoseFlag() {
+        return loseFlag;
+    }
+    
+    public void setLoseFlag(boolean loseFlag) {
+        this.loseFlag = loseFlag;
+    }
+    
+    public int getScore() {
+        return score;
+    }
+    
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    public Integer getLife() {
+        return life;
+    }
+    
+    public void setLife(Integer life) {
+        this.life = life;
+    }
     
     public String getQuestion() {
         return question;

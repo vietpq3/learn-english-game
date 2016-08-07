@@ -46,14 +46,31 @@
     margin: 40px 0 0 135px;
 }
 
-.question{
-    padding: 15px 0 5px 0;
-    text-align: center;
+.info{
+    padding: 0 55px;
+    margin-top: 20px;
 }
 
-.question span{
-    font-weight: bold;
+.life{
+    width: 20%;
+    font-size: 20px;
+    float: left;
+    margin-top: 5px;
+}
+
+.question{
+    width: 60%;
+    float: left;
+    text-align: center;
     font-size: 25px;
+    font-weight: bold;
+}
+
+.score{
+    width: 20%;
+    font-size: 20px;
+    float: right;
+    margin-top: 5px;
 }
 
 .content-body-images{
