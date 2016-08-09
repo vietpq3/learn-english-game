@@ -23,6 +23,12 @@ function init() {
         $('#formActivities').attr("action", "fighting");
         $('#formActivities').submit();
     });
+    
+    $('#btnLogout').click(function(){
+    	$('#formRedirect').attr("action", "../logout/");
+    	$('#formRedirect').submit();
+    });
+    
 }
 
 function checkLoseFlag(){

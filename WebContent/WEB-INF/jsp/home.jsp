@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>HOME</title>
 <link href="../css/common.css?timestamp=current_time" rel="stylesheet" type="text/css" />
-<link href="../css/home/style.css?timestamps=current_time" rel="stylesheet" type="text/css" />
+<link href="../css/home/style.css?timestamp=current_time" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="../js/home/script.js" type="text/javascript"></script>
 </head>

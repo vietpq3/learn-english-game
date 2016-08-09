@@ -8,4 +8,7 @@ function init(){
         $('#form').submit();
     });
     
+    $('#btnLogout').click(function(){
+    	window.location = "../logout/";
+    });
 }

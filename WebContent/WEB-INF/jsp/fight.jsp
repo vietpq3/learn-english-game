@@ -11,13 +11,13 @@
 <link href="../css/common.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
 <link href="../css/fight/style.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-2.2.4.min.js?timestamp=${timestamp}" type="text/javascript"></script>
-<script src="../js/fight/script.js?timestamp=${timestamp}" type="text/javascript"></script>
+<script src="../js/fight/script.js?timestamps=${timestamp}" type="text/javascript"></script>
 </head>
 <body>
 <div class="wrapper">
     <div class="content">
         <div class="content-header">
-            <form:form id="formRedirect" method="POST" modelAttribute="form">
+            <form:form id="formRedirect" method="GET">
                 <div class="content-left">
                     <button id="btnHome" class="btnSubmit btnHome">Home</button>
                 </div>

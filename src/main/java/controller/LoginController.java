@@ -26,30 +26,30 @@ import form.LoginForm;
 @Controller
 @RequestMapping(value = { "/" })
 public class LoginController {
-    
+
     private static final String LOGIN_JSP = "login";
-    private static final String REDIRECT_HOME = "redirect:home/index";
-    
+    private static final String REDIRECT_HOME = "redirect:/home/index";
+
     @Autowired
     private ILoginLogic loginLogic;
-    
+
     @RequestMapping(value = { "/", "", "index" })
     public String index() {
         return LOGIN_JSP;
     }
-    
+
     @RequestMapping("login")
-    public String login(@Valid @ModelAttribute("form") LoginForm form, BindingResult binding,
-            Model model, HttpServletRequest request) throws SQLException {
-        
+    public String login(@Valid @ModelAttribute("form") LoginForm form, BindingResult binding, Model model,
+            HttpServletRequest request) throws SQLException {
+
         if (binding.hasErrors()) {
             return LOGIN_JSP;
         }
-        
+
         LoginParam param = new LoginParam();
         param.setUsername(form.getUsername());
         param.setPassword(form.getPassword());
-        
+
         List<UserInfo> userInfoList = loginLogic.checkLogin(param);
         if (userInfoList != null && userInfoList.size() == 1) {
             SessionAccessor session = new SessionAccessor(request);
@@ -60,7 +60,7 @@ public class LoginController {
             return LOGIN_JSP;
         }
     }
-    
+
     @ModelAttribute("form")
     public LoginForm getForm() {
         return new LoginForm();
