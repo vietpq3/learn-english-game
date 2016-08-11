@@ -23,20 +23,20 @@ import exception.SystemException;
 
 @Component
 public class FightLogicImpl implements IFightLogic {
-    
+
     @Autowired
     private IFightDao fightDao;
-    
+
     @Override
     public List<PictureInfo> getPicInfoList(FightParam param) throws SQLException {
         return fightDao.getPicInfoList(param);
     }
-    
+
     @Override
     public List<Theme> getAllTheme() throws SQLException {
         return fightDao.getAllTheme();
     }
-    
+
     @Override
     public List<PictureInfo> getListPictureForPictureMode() throws SystemException {
         FightParam param = new FightParam();
@@ -58,7 +58,7 @@ public class FightLogicImpl implements IFightLogic {
         }
         return picInfoList;
     }
-    
+
     @Override
     public List<PictureInfo> encryptPictureName(List<PictureInfo> picInfoList, String sessionId)
             throws UnsupportedEncodingException {
@@ -67,7 +67,7 @@ public class FightLogicImpl implements IFightLogic {
         }
         return picInfoList;
     }
-    
+
     @Override
     public String getQuestion(List<PictureInfo> picInfoList, List<String> alreadyUseQuestionList) {
         Random rd = new Random();
@@ -76,15 +76,15 @@ public class FightLogicImpl implements IFightLogic {
         do {
             question = picInfoList.get(rd.nextInt(picInfoList.size() - 1)).getPictureName();
         } while (alreadyUseQuestionList.contains(question));
-        
+
         return question;
     }
-    
+
     @Override
-    public int updateHighScore(LoginParam param) {
+    public int updateHighScore(LoginParam param) throws SQLException {
         return fightDao.updateHighScore(param);
     }
-    
+
     private Theme getTheme() throws SystemException {
         List<Theme> themeList;
         try {
@@ -95,5 +95,5 @@ public class FightLogicImpl implements IFightLogic {
             throw new SystemException("SQL Exception");
         }
     }
-    
+
 }

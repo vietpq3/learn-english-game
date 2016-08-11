@@ -19,12 +19,12 @@ import entity.Theme;
 
 @Component
 public class FightDaoImpl extends AbstractDao implements IFightDao {
-    
+
     @Autowired
     public FightDaoImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
-    
+
     @Override
     public List<Theme> getAllTheme() throws SQLException {
         String sql = "select * from themes";
@@ -40,7 +40,7 @@ public class FightDaoImpl extends AbstractDao implements IFightDao {
         }
         return themeList;
     }
-    
+
     @Override
     public List<PictureInfo> getPicInfoList(FightParam param) throws SQLException {
         String sql = "select * from pictureInfo where themeId = ?";
@@ -59,18 +59,18 @@ public class FightDaoImpl extends AbstractDao implements IFightDao {
         }
         return picInfoList;
     }
-    
+
     @Override
-    public int updateHighScore(LoginParam param) {
+    public int updateHighScore(LoginParam param) throws SQLException {
         String sql = "update userInf set highScore = ? where username = ?";
-        
+
         createArgs();
         setArgs(param.getHighScore());
         setArgs(param.getUsername());
-        
+
         int count = excuteUpdate(sql);
-        
+
         return count;
     }
-    
+
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,6 +132,8 @@ public class FightController {
             }
         } catch (UnsupportedEncodingException e) {
             throw new SystemException("Encrypt/Decrypt fail");
+        } catch (SQLException e) {
+            throw new SystemException("SQL exception");
         }
 
         form.setScore(formInSession.getScore());

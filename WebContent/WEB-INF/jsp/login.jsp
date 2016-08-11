@@ -27,7 +27,7 @@
                         <input type="submit" value="Login" class="inputClass btnSubmit" />
                     </li>
                     <li>
-                        <p>Not registered? <a onclick="" href="#">Create an account</a></p>
+                        <p>Not registered? <a onclick="" href="register/index">Create an account</a></p>
                     </li>
                 </ul>
                 <form:errors path="*" cssClass="errors" element="div"></form:errors>

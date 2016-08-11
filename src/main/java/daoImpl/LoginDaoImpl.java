@@ -17,12 +17,12 @@ import entity.UserInfo;
 
 @Component
 public class LoginDaoImpl extends AbstractDao implements ILoginDao {
-    
+
     @Autowired
     public LoginDaoImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
     }
-    
+
     @Override
     public List<UserInfo> checkLogin(LoginParam param) throws SQLException {
         String sql = "select * from userInf where username = ? and passwords = ?";
@@ -31,7 +31,7 @@ public class LoginDaoImpl extends AbstractDao implements ILoginDao {
         setArgs(param.getUsername());
         setArgs(param.getPassword());
         ResultSet rs = excuteQuery(sql);
-        
+
         UserInfo userInfo = null;
         while (rs.next()) {
             userInfo = new UserInfo();
@@ -40,7 +40,19 @@ public class LoginDaoImpl extends AbstractDao implements ILoginDao {
             userInfo.setHighScore(rs.getInt("highScore"));
             userInfoList.add(userInfo);
         }
-        
+
         return userInfoList;
+    }
+
+    @Override
+    public int registerAccount(LoginParam param) throws SQLException {
+        String sql = "insert into userInf(username, passwords, authority_id, highScore) values(?, ?, 2, 0)";
+
+        createArgs();
+        setArgs(param.getUsername());
+        setArgs(param.getPassword());
+
+        int count = excuteUpdate(sql);
+        return count;
     }
 }

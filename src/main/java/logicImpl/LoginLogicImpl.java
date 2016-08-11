@@ -14,13 +14,17 @@ import entity.UserInfo;
 
 @Component
 public class LoginLogicImpl implements ILoginLogic {
-    
+
     @Autowired
     private ILoginDao loginDao;
-    
+
     @Override
     public List<UserInfo> checkLogin(LoginParam param) throws SQLException {
         return loginDao.checkLogin(param);
     }
-    
+
+    @Override
+    public int registerAccount(LoginParam param) throws SQLException {
+        return loginDao.registerAccount(param);
+    }
 }

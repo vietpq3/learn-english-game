@@ -18,6 +18,7 @@ create table authority(
 )
 
 insert into authority(authority_id, authority_name) values(1, 'Administrator')
+insert into authority(authority_id, authority_name) values(2, 'User')
 END
 go
 ----------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ create table userInf(
     authority_id int,
     highScore int
 )
-insert into userInf(username, passwords, authority_id, highScore) values('aaa','aaa',1, 0)
+insert into userInf(username, passwords, authority_id, highScore) values('aaa','aaa', 1, 0)
 END
 go
 ----------------------------------------------------------------------------------------

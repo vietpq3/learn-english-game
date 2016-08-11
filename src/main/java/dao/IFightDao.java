@@ -9,11 +9,11 @@ import entity.PictureInfo;
 import entity.Theme;
 
 public interface IFightDao {
-    
+
     List<PictureInfo> getPicInfoList(FightParam param) throws SQLException;
-    
+
     List<Theme> getAllTheme() throws SQLException;
-    
-    int updateHighScore(LoginParam param);
-    
+
+    int updateHighScore(LoginParam param) throws SQLException;
+
 }
