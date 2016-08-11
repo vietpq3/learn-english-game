@@ -47,6 +47,7 @@ form p{
 }
 
 .errors{
+	margin-left: 40px;
     font-size: 11px;
     color: red;
 }

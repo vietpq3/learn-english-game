@@ -181,7 +181,8 @@ insert into pictureInfo(pictureName, themeId, url) values
 END
 go
 ----------------------------------------------------------------------------------------
---select * from loginInf
+--select * from userInf
 --select * from pictureInfo
 --select @@SERVERNAME as svname
 --select * from pictureInfo where themeId = 1
+--delete from userInf where authority_id = 2

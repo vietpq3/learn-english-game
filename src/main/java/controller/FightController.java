@@ -1,11 +1,13 @@
 package controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import logic.IFightLogic;
 
@@ -19,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import param.LoginParam;
-
 import common.CryptUtil;
 import common.SessionAccessor;
-
 import entity.PictureInfo;
 import exception.SystemException;
 import form.FightForm;
@@ -31,6 +31,8 @@ import form.FightForm;
 @RequestMapping("fight")
 public class FightController {
 
+    private static final String REDIRECT_FIGHT_FIGHT = "redirect:/fight/fight";
+    private static final String FIGHT_JSP = "fight";
     private static final int LIFE_DEFAULT = 5;
     private static final String REDIRECT_LOGIN = "redirect:/";
 
@@ -44,21 +46,21 @@ public class FightController {
         return mav;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getMethod() {
-        return REDIRECT_LOGIN;
-    }
-
     @RequestMapping(value = "index", method = RequestMethod.POST)
     public String index() {
-        return "fight";
+        return FIGHT_JSP;
     }
 
-    @RequestMapping(value = "fight", method = RequestMethod.POST)
+    @RequestMapping(value = "fight")
     public String fight(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request)
             throws SystemException {
 
         SessionAccessor session = new SessionAccessor(request);
+
+        if (session.getLoginUser() == null) {
+            return REDIRECT_LOGIN;
+        }
+
         FightForm formInSession = session.getFightForm();
 
         String gameMode = form.getGameMode() == null ? formInSession.getGameMode() : form.getGameMode();
@@ -87,12 +89,12 @@ public class FightController {
         session.setFightForm(form);
         model.addAttribute("form", form);
 
-        return "fight";
+        return FIGHT_JSP;
     }
 
     @RequestMapping(value = "fighting", method = RequestMethod.POST)
-    public String fighting(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request)
-            throws SystemException {
+    public String fighting(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request,
+            HttpServletResponse response) throws SystemException {
 
         SessionAccessor session = new SessionAccessor(request);
         FightForm formInSession = session.getFightForm();
@@ -108,12 +110,13 @@ public class FightController {
 
                 formInSession.setScore(formInSession.getScore() + 1);
                 form.setLife(formInSession.getLife());
-                question = fightLogic.getQuestion(picInfoList, alreadyUseQuestionList);
-                alreadyUseQuestionList.add(question);
 
                 if (picInfoList.size() == alreadyUseQuestionList.size()) {
-                    return "redirect:../fight/fight";
+                    return REDIRECT_FIGHT_FIGHT;
                 }
+
+                question = fightLogic.getQuestion(picInfoList, alreadyUseQuestionList);
+                alreadyUseQuestionList.add(question);
             } else {
                 form.setLife(formInSession.getLife() - 1);
                 if (form.getLife() < 1) {
@@ -134,6 +137,8 @@ public class FightController {
             throw new SystemException("Encrypt/Decrypt fail");
         } catch (SQLException e) {
             throw new SystemException("SQL exception");
+        } catch (IOException e) {
+            throw new SystemException("IOException");
         }
 
         form.setScore(formInSession.getScore());
@@ -143,7 +148,7 @@ public class FightController {
 
         session.setFightForm(form);
         model.addAttribute("form", form);
-        return "fight";
+        return FIGHT_JSP;
     }
 
     @ModelAttribute("form")

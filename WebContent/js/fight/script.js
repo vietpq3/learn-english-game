@@ -7,9 +7,13 @@ $(document).ready(function() {
 });
 
 function init() {
-    $('#btnHome').click(function() {
-        $('#formRedirect').attr("action", "../home/index");
-        $('#formRedirect').submit();
+    $('#btnHome').click(function(event) {
+        if(confirm('Do you want to go to Home?')){
+        	$('#formRedirect').attr("action", "../home/index");
+            $('#formRedirect').submit();
+        } else{
+        	event.preventDefault();
+        }
     });
 
     $('#btnPicture').click(function() {
@@ -24,9 +28,13 @@ function init() {
         $('#formActivities').submit();
     });
     
-    $('#btnLogout').click(function(){
-    	$('#formRedirect').attr("action", "../logout/");
-    	$('#formRedirect').submit();
+    $('#btnLogout').click(function(event){
+    	if(confirm('Do you want to logout?')){
+    		$('#formRedirect').attr("action", "../logout/");
+        	$('#formRedirect').submit();
+    	}else{
+    		event.preventDefault();
+    	}
     });
     
 }

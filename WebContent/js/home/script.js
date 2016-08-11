@@ -8,7 +8,12 @@ function init(){
         $('#form').submit();
     });
     
-    $('#btnLogout').click(function(){
-    	window.location = "../logout/";
+    $('#btnLogout').click(function(event){
+    	if(confirm('Do you want to logout?')){
+    		window.location = "../logout/";
+    	} else{
+    		event.preventDefault();
+    	}
     });
+    
 }
