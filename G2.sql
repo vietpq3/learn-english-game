@@ -7,8 +7,8 @@ if not exists(select name from master.sys.databases where name = 'G2')
 create database G2
 go
 ----------------------------------------------------------------------------------------
-use G2
-go
+--use G2
+--go
 ----------------------------------------------------------------------------------------
 if not exists (select * from sys.objects where object_id = object_id('[dbo].[authority]') and type in ('U'))
 BEGIN

@@ -30,7 +30,14 @@
                         <p>Not registered? <a onclick="" href="register/index">Create an account</a></p>
                     </li>
                 </ul>
-                <form:errors path="*" cssClass="errors" element="div"></form:errors>
+                <%-- <form:errors path="*" cssClass="errors" element="div"></form:errors> --%>
+                <c:if test="${!empty errorMessage}">
+                	<div class="errors">
+                		<c:forEach items="${errorMessage.errorMessageList}" var="message">
+	                		<c:out value="${message}"></c:out> <br />
+	                	</c:forEach>
+                	</div>
+                </c:if>
             </form:form>
         </div>
     </div>

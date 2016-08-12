@@ -21,12 +21,13 @@ import param.LoginParam;
 
 import common.SessionAccessor;
 
+import entity.ErrorMessage;
 import entity.UserInfo;
 import form.LoginForm;
 
 @Controller
 @RequestMapping(value = { "/" })
-public class LoginController {
+public class LoginController extends AbstractController {
 
     private static final String LOGIN_JSP = "login";
     private static final String REDIRECT_HOME = "redirect:/home/index";
@@ -44,6 +45,9 @@ public class LoginController {
             HttpServletRequest request) throws SQLException {
 
         if (binding.hasErrors()) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setErrorMessageList(resolveErrorMessage(form, binding));
+            model.addAttribute("errorMessage", errorMessage);
             return LOGIN_JSP;
         }
 
