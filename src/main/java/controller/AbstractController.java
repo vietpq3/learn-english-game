@@ -3,7 +3,6 @@ package controller;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,7 +25,7 @@ public abstract class AbstractController {
     protected List<String> resolveErrorMessage(final AbstractForm form, final BindingResult binding) {
 
         List<FieldError> errorList = binding.getFieldErrors();
-        List<String> messageList = new LinkedList<String>();
+        List<String> messageList = new ArrayList<String>();
         Map<Integer, String> messageMap = new TreeMap<Integer, String>();
 
         for (FieldError fieldError : errorList) {
@@ -78,10 +77,10 @@ public abstract class AbstractController {
             if (messageConfig != null) {
                 messageMap.put(messageConfig.order(), resolveMessage);
             }
+        }
 
-            for (Integer key : messageMap.keySet()) {
-                messageList.add(messageMap.get(key));
-            }
+        for (Integer key : messageMap.keySet()) {
+            messageList.add(messageMap.get(key));
         }
 
         return messageList;
