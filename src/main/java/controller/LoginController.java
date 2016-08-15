@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +34,7 @@ public class LoginController extends AbstractController {
     @Autowired
     private ILoginLogic loginLogic;
 
-    @RequestMapping(value = { "/", "", "index", "login" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/", "", "login" }, method = RequestMethod.GET)
     public String index() {
         return LOGIN_JSP;
     }
@@ -61,7 +60,9 @@ public class LoginController extends AbstractController {
             session.setLoginUser(userInfoList.get(0));
             return REDIRECT_HOME;
         } else {
-            binding.addError(new ObjectError("loginFail", "Username and password are not mapping"));
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.getErrorMessageList().add("Username and password are not mapping");
+            model.addAttribute("errorMessage", errorMessage);
             return LOGIN_JSP;
         }
     }

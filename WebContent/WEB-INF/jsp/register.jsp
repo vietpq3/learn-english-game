@@ -24,10 +24,17 @@
 		                <form:password path="password" class="inputClass" placeholder="Password" value="${form.password}"/>
 		            </li>
 		            <li>
-		                <input type="submit" value="Register" class="inputClass btnSubmit" />
+		                <form:input path="submit" type="submit" value="Register" class="inputClass btnSubmit" />
 		            </li>
 		        </ul>
-	            <form:errors path="*" cssClass="errors" element="div"></form:errors>					
+		        
+	            <c:if test="${!empty errorMessage}">
+                	<div class="errors">
+                		<c:forEach items="${errorMessage.errorMessageList}" var="message">
+	                		<c:out value="${message}"></c:out> <br />
+	                	</c:forEach>
+                	</div>
+                </c:if>				
         	</form:form>
         </div>
     </div>

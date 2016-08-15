@@ -1,5 +1,6 @@
 package form;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -12,14 +13,24 @@ import constant.SystemConstant;
 public class LoginForm extends AbstractForm {
 
     @NotEmpty(message = MessageConstant.MUST_NOT_EMPTY)
-    @Size(max = 12, message = "{0} can only 12 chars")
-    @Pattern(regexp = SystemConstant.REGEX_VALID_USERNAME, message = "{0} sai regex")
-    @MessageConfig(order = 0, value = { "Username" })
+    @Size(max = 12, message = MessageConstant.MIN_6_MAX_12_CHARS)
+    @Pattern(regexp = SystemConstant.REGEX_VALID_USERNAME, message = MessageConstant.ONLY_DIGITS_ALPHABETS)
+    @MessageConfig(order = 0, value = "Username")
     private String username;
 
     @NotEmpty(message = MessageConstant.MUST_NOT_EMPTY)
-    @MessageConfig(order = 1, value = { "Password" })
+    @MessageConfig(order = 1, value = "Password")
     private String password;
+
+    private String submit;
+
+    public String getSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(String submit) {
+        this.submit = submit;
+    }
 
     public String getPassword() {
         return password;
@@ -35,6 +46,12 @@ public class LoginForm extends AbstractForm {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @AssertTrue(message = MessageConstant.MIN_6_MAX_12_CHARS)
+    @MessageConfig(order = 2, value = "Password")
+    public boolean isValidPassword() {
+        return !"Register".equals(submit) || (password != null && password.length() >= 6);
     }
 
 }

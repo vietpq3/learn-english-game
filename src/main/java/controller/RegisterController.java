@@ -12,18 +12,19 @@ import logic.ILoginLogic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import param.LoginParam;
+import entity.ErrorMessage;
 import form.LoginForm;
 
 @Controller
 @RequestMapping(value = "register")
-public class RegisterController {
+public class RegisterController extends AbstractController {
 
     private static final String REGISTER_JSP = "register";
     private static final String INDEX = "index";
@@ -31,16 +32,19 @@ public class RegisterController {
     @Autowired
     private ILoginLogic loginLogic;
 
-    @RequestMapping(value = { INDEX, "/" })
+    @RequestMapping(value = { INDEX, "/", "register" }, method = RequestMethod.GET)
     public String index() {
         return REGISTER_JSP;
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("form") LoginForm form, BindingResult binding,
-            HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
 
         if (binding.hasErrors()) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setErrorMessageList(resolveErrorMessage(form, binding));
+            model.addAttribute("errorMessage", errorMessage);
             return REGISTER_JSP;
         }
 
@@ -52,7 +56,9 @@ public class RegisterController {
         try {
             result = loginLogic.registerAccount(param);
         } catch (SQLException e) {
-            binding.addError(new ObjectError("registerFail", "Username is in use"));
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.getErrorMessageList().add("Username is in use");
+            model.addAttribute("errorMessage", errorMessage);
         }
 
         if (result == 1) {

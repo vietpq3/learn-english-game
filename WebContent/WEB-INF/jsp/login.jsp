@@ -24,7 +24,7 @@
                         <form:password path="password" class="inputClass" placeholder="Password" value="${form.password}"/>
                     </li>
                     <li>
-                        <input type="submit" value="Login" class="inputClass btnSubmit" />
+                        <form:input path="submit" type="submit" value="Login" class="inputClass btnSubmit" />
                     </li>
                     <li>
                         <p>Not registered? <a onclick="" href="register/index">Create an account</a></p>
