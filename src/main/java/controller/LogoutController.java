@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("logout")
-public class LogoutController {
+public class LogoutController extends AbstractController {
 
     @RequestMapping("/")
     public String logout(HttpServletRequest request) {

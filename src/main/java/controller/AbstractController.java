@@ -13,14 +13,24 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
 import annotation.MessageConfig;
+import exception.SystemException;
 import form.AbstractForm;
 
 public abstract class AbstractController {
 
     @Autowired
     MessageSource messageSource;
+
+    @ExceptionHandler(SystemException.class)
+    public ModelAndView SystemExceptionHandle(SystemException ex) {
+        ModelAndView mav = new ModelAndView("error");
+        mav.addObject("message", ex.getMessage());
+        return mav;
+    }
 
     protected List<String> resolveErrorMessage(final AbstractForm form, final BindingResult binding) {
 

@@ -16,4 +16,8 @@ function init(){
     	}
     });
     
+    $('#btnHighScore').click(function(){
+    	window.location = "../home/highscore";
+    });
+    
 }

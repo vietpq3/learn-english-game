@@ -20,12 +20,8 @@
     float:right;
 }
 
-.clear{
-    clear: both;
-}
-
 .content-body{
-    height: 488px;
+	min-height: 488px;
     border: 1px dotted black;
 }
 

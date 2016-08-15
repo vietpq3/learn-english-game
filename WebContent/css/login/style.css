@@ -5,7 +5,7 @@
 }
 
 .content {
-    height: 242px;
+    min-height: 242px;
 }
 
 form {

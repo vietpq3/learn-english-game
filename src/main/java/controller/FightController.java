@@ -14,22 +14,22 @@ import logic.IFightLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import param.LoginParam;
+
 import common.CryptUtil;
 import common.SessionAccessor;
+
 import entity.PictureInfo;
 import exception.SystemException;
 import form.FightForm;
 
 @Controller
 @RequestMapping("fight")
-public class FightController {
+public class FightController extends AbstractController {
 
     private static final String REDIRECT_FIGHT_FIGHT = "redirect:/fight/fight";
     private static final String FIGHT_JSP = "fight";
@@ -38,13 +38,6 @@ public class FightController {
 
     @Autowired
     private IFightLogic fightLogic;
-
-    @ExceptionHandler(SystemException.class)
-    public ModelAndView SystemExceptionHandle(SystemException ex) {
-        ModelAndView mav = new ModelAndView("error");
-        mav.addObject("message", ex.getMessage());
-        return mav;
-    }
 
     @RequestMapping(value = "index", method = RequestMethod.POST)
     public String index() {

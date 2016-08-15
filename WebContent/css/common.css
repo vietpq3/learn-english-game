@@ -11,7 +11,7 @@ body {
 }
 
 .content {
-    height: 567px;
+    min-height: 567px;
     background-color: #99B4D1;
 }
 
