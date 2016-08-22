@@ -25,18 +25,24 @@ import entity.UserInfo;
 import form.LoginForm;
 
 @Controller
-@RequestMapping(value = { "/" })
+@RequestMapping(value = { "login" })
 public class LoginController extends AbstractController {
 
     private static final String LOGIN_JSP = "login";
     private static final String REDIRECT_HOME = "redirect:/home/index";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
 
     @Autowired
     private ILoginLogic loginLogic;
 
-    @RequestMapping(value = { "/", "", "login" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "" })
     public String index() {
         return LOGIN_JSP;
+    }
+    
+    @RequestMapping(value = { "/", "login" }, method = RequestMethod.GET)
+    public String redirect() {
+        return REDIRECT_LOGIN;
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)

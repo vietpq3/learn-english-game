@@ -28,7 +28,7 @@ public class HomeController extends AbstractController {
     private static final String HIGHSCORE = "highscore";
     private static final String INDEX = "index";
     private static final String HOME_JSP = "home";
-    private static final String REDIRECT_LOGIN = "redirect:/";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
 
     @Autowired
     private IHomeLogic homeLogic;

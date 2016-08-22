@@ -34,7 +34,7 @@ public class FightController extends AbstractController {
     private static final String REDIRECT_FIGHT_FIGHT = "redirect:/fight/fight";
     private static final String FIGHT_JSP = "fight";
     private static final int LIFE_DEFAULT = 5;
-    private static final String REDIRECT_LOGIN = "redirect:/";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
 
     @Autowired
     private IFightLogic fightLogic;

@@ -14,6 +14,6 @@ public class LogoutController extends AbstractController {
 
         request.getSession().invalidate();
 
-        return "redirect:../";
+        return "redirect:../login";
     }
 }
