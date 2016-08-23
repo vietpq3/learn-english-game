@@ -73,9 +73,9 @@ public class FightLogicImpl implements IFightLogic {
         Random rd = new Random();
         Collections.shuffle(picInfoList);
         String question = picInfoList.get(0).getPictureName();
-        do {
-            question = picInfoList.get(rd.nextInt(picInfoList.size() - 1)).getPictureName();
-        } while (alreadyUseQuestionList.contains(question));
+        while (alreadyUseQuestionList.contains(question)) {
+            question = picInfoList.get(rd.nextInt(picInfoList.size())).getPictureName();
+        }
 
         return question;
     }
