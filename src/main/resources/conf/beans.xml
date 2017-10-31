@@ -27,7 +27,7 @@
     <bean id="externalProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>
-                <value>file:D:/Work/pleiades/workspace/G2/ext/filepath.properties</value>
+                <value>WEB-INF/classes/ext/filepath.properties</value>
             </list>
         </property>
     </bean>
@@ -45,8 +45,8 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>file:D:/Work/pleiades/workspace/G2/ext/jdbc.properties</value>
-                <value>file:D:/Work/pleiades/workspace/G2/ext/filepath.properties</value>
+                <value>WEB-INF/classes/ext/jdbc.properties</value>
+                <value>WEB-INF/classes/ext/filepath.properties</value>
             </list>
         </property>
     </bean>
