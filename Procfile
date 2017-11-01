@@ -1,1 +1,1 @@
-web: java -jar target/dependency/webapp-runner.jar target/G2-0.0.1-SNAPSHOT.war
+web: java -jar -Dserver.port=$PORT target/dependency/webapp-runner.jar target/G2-0.0.1-SNAPSHOT.war
