@@ -1,1 +1,1 @@
-web: java -jar target/G2-0.0.1-SNAPSHOT.jar
+web: java -jar target/dependency/webapp-runner.jar target/*.war

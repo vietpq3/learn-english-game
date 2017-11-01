@@ -4,7 +4,7 @@
     <groupId>G2</groupId>
     <artifactId>G2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <!-- <packaging>war</packaging> -->
+    <packaging>war</packaging>
 
     <properties>
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
@@ -151,7 +151,7 @@
                 <scope>provided</scope>
         </dependency>
         
-        <dependency>
+        <!-- <dependency>
 	       <groupId>org.slf4j</groupId>
 	       <artifactId>slf4j-api</artifactId>
 	       <version>1.7.5</version>
@@ -160,9 +160,9 @@
 	       <groupId>org.slf4j</groupId>
 	       <artifactId>slf4j-log4j12</artifactId>
 	       <version>1.7.5</version>
-	   </dependency>
+	   </dependency> -->
 	   
-	   <dependency>
+	 <!--   <dependency>
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-actuator</artifactId>
 	      <version>1.2.0.RELEASE</version>
@@ -171,7 +171,7 @@
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-web</artifactId>
 	      <version>1.2.0.RELEASE</version>
-	    </dependency>
+	    </dependency> -->
 
     </dependencies>
 
@@ -187,16 +187,16 @@
                 </configuration>
             </plugin>
 
-            <!-- <plugin>
+            <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
-                <configuration>
+                <!-- <configuration>
                     <warSourceDirectory>WebContent</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin> -->
+                </configuration> -->
+            </plugin>
             
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.0.1</version>
@@ -207,9 +207,9 @@
                         <goals><goal>copy-dependencies</goal></goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
             
-            <!-- <plugin>
+            <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-dependency-plugin</artifactId>
 	            <version>2.3</version>
@@ -229,7 +229,7 @@
 	                    </configuration>
 	                </execution>
 	            </executions>
-	        </plugin> -->
+	        </plugin>
         </plugins>
     </build>
 </project>
