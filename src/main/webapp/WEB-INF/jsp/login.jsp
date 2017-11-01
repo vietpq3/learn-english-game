@@ -15,7 +15,7 @@
 <div class="wrapper">
     <div class="content">
         <div class="formLogin">
-            <form:form action="login/login" modelAttribute="form">
+            <form:form action="login" modelAttribute="form">
                 <ul>
                     <li>
                         <form:input path="username" class="inputClass" placeholder="Username" value="${form.username}"/>
@@ -27,7 +27,7 @@
                         <form:input path="submit" type="submit" value="Login" class="inputClass btnSubmit" />
                     </li>
                     <li>
-                        <p>Not registered? <a onclick="" href="register/index">Create an account</a></p>
+                        <p>Not registered? <a onclick="" href="register">Create an account</a></p>
                     </li>
                 </ul>
                 

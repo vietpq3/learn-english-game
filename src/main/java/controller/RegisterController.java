@@ -27,15 +27,20 @@ import form.LoginForm;
 public class RegisterController extends AbstractController {
 
     private static final String REGISTER_JSP = "register";
-    private static final String INDEX = "index";
+	private static final String REDIRECT_REGISTER = "redirect:/register/";
 
     @Autowired
     private ILoginLogic loginLogic;
 
-    @RequestMapping(value = { INDEX, "/", "register" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "register/" }, method = RequestMethod.GET)
     public String index() {
         return REGISTER_JSP;
     }
+
+	@RequestMapping(value = { "", "register" }, method = RequestMethod.GET)
+	public String redirect() {
+		return REDIRECT_REGISTER;
+	}
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@Valid @ModelAttribute("form") LoginForm form, BindingResult binding,
