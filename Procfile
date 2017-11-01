@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* G2
+web: java -jar target/G2-0.0.1-SNAPSHOT.jar
