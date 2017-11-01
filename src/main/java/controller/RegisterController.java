@@ -67,7 +67,7 @@ public class RegisterController extends AbstractController {
         }
 
         if (result == 1) {
-            request.getRequestDispatcher("/login/login").forward(request, response);
+            request.getRequestDispatcher("/login").forward(request, response);
         }
 
         return REGISTER_JSP;
