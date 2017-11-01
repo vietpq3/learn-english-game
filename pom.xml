@@ -4,7 +4,7 @@
     <groupId>G2</groupId>
     <artifactId>G2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <!-- <packaging>war</packaging> -->
 
     <properties>
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
@@ -176,16 +176,29 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
-                <!-- <configuration>
+                <configuration>
                     <warSourceDirectory>WebContent</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration> -->
-            </plugin>
+                </configuration>
+            </plugin> -->
             
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals><goal>copy-dependencies</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-dependency-plugin</artifactId>
 	            <version>2.3</version>
@@ -205,7 +218,7 @@
 	                    </configuration>
 	                </execution>
 	            </executions>
-	        </plugin>
+	        </plugin> -->
         </plugins>
     </build>
 </project>
