@@ -1,34 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FIGHT</title>
-<link href="../css/common.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
-<link href="../css/fight/style.css?timestamp=${timestamp}" rel="stylesheet" type="text/css" />
-<script src="../js/jquery-2.2.4.min.js?timestamp=${timestamp}" type="text/javascript"></script>
-<script src="../js/fight/script.js?timestamps=${timestamp}" type="text/javascript"></script>
+<%@ include file="taglib.jsp" %>
+<link href="../css/fight/style.css?t=<%=t%>" rel="stylesheet" type="text/css" />
+<script src="../js/fight/script.js?t=<%=t%>" type="text/javascript"></script>
 </head>
 <body>
 <div class="wrapper">
     <div class="content">
+    	<%@ include file="common.jsp" %>
         <div class="content-header">
-            <form:form id="formRedirect" method="GET">
-                <div class="content-left">
-                    <button id="btnHome" class="btnSubmit btnHome">Home</button>
-                </div>
-                <div class="content-mid">
-                    <span>FIGHT</span>
-                </div>
-                <div class="content-right">
-                    <button id="btnLogout" class="btnSubmit btnLogout">Logout</button>
-                </div>
-                <div class="clear"></div>
-            </form:form>
+	        <div class="content-left">
+	            <button id="btnHome" class="btnSubmit btnHome">Home</button>
+	        </div>
+	        <div class="content-mid">
+	            <span>FIGHT</span>
+	        </div>
+	        <div class="content-right">
+	            <button id="btnLogout" class="btnSubmit btnLogout">Logout</button>
+	        </div>
+	        <div class="clear"></div>
         </div>
         <div class="clear"></div>
         

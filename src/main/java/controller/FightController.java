@@ -9,8 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logic.IFightLogic;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import param.LoginParam;
-
 import common.CryptUtil;
 import common.SessionAccessor;
-
 import entity.PictureInfo;
 import exception.SystemException;
 import form.FightForm;
+import logic.IFightLogic;
+import param.LoginParam;
 
 @Controller
 @RequestMapping("fight")
@@ -44,7 +41,7 @@ public class FightController extends AbstractController {
         return FIGHT_JSP;
     }
 
-    @RequestMapping(value = "fight")
+	@RequestMapping(value = "fight")
     public String fight(@ModelAttribute("form") FightForm form, Model model, HttpServletRequest request)
             throws SystemException {
 

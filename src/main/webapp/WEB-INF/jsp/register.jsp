@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>REGISTER</title>
-<link href="../css/common.css?timestamp=current_time" rel="stylesheet" type="text/css" />
-<link href="../css/register/style.css?timestamp=current_time" rel="stylesheet" type="text/css" />
+<%@ include file="taglib.jsp"%>
+<link href="../css/register/style.css?t=<%=t%>" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="wrapper">

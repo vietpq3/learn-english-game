@@ -1,5 +1,6 @@
 $(document).ready(function(){
     init();
+    commonInit();
 });
 
 function init(){
@@ -8,16 +9,8 @@ function init(){
         $('#form').submit();
     });
     
-    $('#btnLogout').click(function(event){
-    	if(confirm('Do you want to logout?')){
-    		window.location = "../logout/";
-    	} else{
-    		event.preventDefault();
-    	}
-    });
-    
     $('#btnHighScore').click(function(){
-    	window.location = "../home/highscore";
+    	$('#formRedirect').attr("action", "highscore");
+        $('#formRedirect').submit();
     });
-    
 }

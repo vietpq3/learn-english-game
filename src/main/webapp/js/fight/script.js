@@ -4,17 +4,10 @@ window.onload = function(){
 
 $(document).ready(function() {
     init();
+    commonInit();
 });
 
 function init() {
-    $('#btnHome').click(function(event) {
-        if(confirm('Do you want to go to Home?')){
-        	$('#formRedirect').attr("action", "../home/index");
-            $('#formRedirect').submit();
-        } else{
-        	event.preventDefault();
-        }
-    });
 
     $('#btnPicture').click(function() {
         $('#formActivities').attr("action", "fight");
@@ -26,15 +19,6 @@ function init() {
         $('#answer').attr("value", $(this).attr("answer"));
         $('#formActivities').attr("action", "fighting");
         $('#formActivities').submit();
-    });
-    
-    $('#btnLogout').click(function(event){
-    	if(confirm('Do you want to logout?')){
-    		$('#formRedirect').attr("action", "../logout/");
-        	$('#formRedirect').submit();
-    	}else{
-    		event.preventDefault();
-    	}
     });
     
 }
