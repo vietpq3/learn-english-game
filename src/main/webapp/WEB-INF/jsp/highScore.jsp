@@ -25,22 +25,24 @@
                 <div class="clear"></div>
             </div>
 			<div class="content-body">
-				<table>
+				<table id="tblHighScore">
+				    <colgroup>
+				        <col width="200px">
+				        <col width="60px">
+				    </colgroup>
 					<tr>
 						<th>Name</th>
 						<th>Score</th>
 					</tr>
-					<tr>
-						<td>A</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>B</td>
-						<td>2</td>
-					</tr>
+					<c:forEach items="${userInfoList}" var="userInfo">
+					   <tr>
+	                        <td>${userInfo.username }</td>
+	                        <td>${userInfo.highScore }</td>
+	                    </tr>
+					</c:forEach>
 				</table>
 				<c:if test="${not empty pageInfo && pageInfo.totalRecord > 0}">
-					<c:set var="msg~" value="～"></c:set>
+					<c:set var="msg~" value="~"></c:set>
 					<c:set var="msg/" value="/"></c:set>
 				</c:if>
 			</div>

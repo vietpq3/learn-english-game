@@ -33,3 +33,13 @@
 .btnHome, .btnLogout{
     width: 100px;
 }
+
+#tblHighScore, tr, th, td{
+	border: 1px solid black;
+}
+
+#tblHighScore {
+	border-collapse: collapse;
+	margin: 30px auto;
+	width: 260px;
+}
