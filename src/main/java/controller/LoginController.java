@@ -28,7 +28,7 @@ import form.LoginForm;
 @RequestMapping(value = { "/" })
 public class LoginController extends AbstractController {
 
-    private static final String LOGIN_JSP = "login";
+    private static final String LOGIN_JSP = "signup";
     private static final String REDIRECT_HOME = "redirect:/home/index";
 	private static final String REDIRECT_LOGIN = "redirect:/login";
 
